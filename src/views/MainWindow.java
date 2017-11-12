@@ -1,10 +1,14 @@
-package com.molecular.epidemiology.views;
+package views;
 
+import java.awt.AWTEvent;
 import java.awt.BorderLayout;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import db_connection.DataBaseConnection;
+
 import javax.swing.JMenuBar;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
@@ -15,13 +19,14 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-public class MainWindow extends ParentWindow {
+public class MainWindow extends ParentWindow implements ActionListener {
 
 
 	private static final long serialVersionUID = 1L;
 	
 	private JPanel contentPane;
 	private JTable table;
+	private JButton btnNewButton, button, button_1;
 
 	/**
 	 * Create the frame.
@@ -39,20 +44,24 @@ public class MainWindow extends ParentWindow {
 		contentPane.add(panel);
 		panel.setLayout(null);
 		
-		JButton btnNewButton = new JButton("Nuevo");
-		btnNewButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-			}
-		});
+		btnNewButton = new JButton("Nuevo");
+		btnNewButton.addActionListener(this);
 		btnNewButton.setBounds(15, 16, 166, 160);
 		panel.add(btnNewButton);
 		
-		JButton button = new JButton("Detalle");
+		button = new JButton("Detalle");
 		button.setBounds(15, 281, 166, 160);
 		panel.add(button);
 		
-		JButton button_1 = new JButton("Borrar");
+		button_1 = new JButton("Borrar");
 		button_1.setBounds(15, 527, 166, 160);
 		panel.add(button_1);
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		if(e.getSource() == btnNewButton) {
+			DataBaseConnection.getInstance().getPacientInfo();
+		}
 	}
 }

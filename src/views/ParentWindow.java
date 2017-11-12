@@ -1,4 +1,4 @@
-package com.molecular.epidemiology.views;
+package views;
 
 import java.awt.Color;
 

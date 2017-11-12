@@ -2,7 +2,7 @@ package com.molecular.epidemiology;
 
 import java.awt.EventQueue;
 
-import com.molecular.epidemiology.views.MainWindow;
+import views.MainWindow;
 
 public class Main {
 
