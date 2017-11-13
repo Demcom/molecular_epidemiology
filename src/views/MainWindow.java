@@ -45,6 +45,7 @@ public class MainWindow extends ParentWindow implements ActionListener {
 	 * Create the frame.
 	 */
 	public MainWindow() {
+		setTitle("Pantalla principal");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		contentPane = getParentContentJPanel();
 		table = new JTable();
@@ -80,6 +81,7 @@ public class MainWindow extends ParentWindow implements ActionListener {
 	}
 	
 	public void updateTable() {
+		clearTable();
 		ArrayList<PacientModel> pacientModels = DataBaseConnection.getInstance().getPacients();
 		//System.out.println(String.valueOf(pacientModels.size()));
 		for(int i = 0; i < pacientModels.size(); i++) {
@@ -87,11 +89,22 @@ public class MainWindow extends ParentWindow implements ActionListener {
 		}
 		tableModel.fireTableDataChanged();
 	}
+	
+	public void clearTable() {
+		while(tableModel.getRowCount() > 0) {
+			tableModel.removeRow(0);
+		}
+	}
+	
+	public void showFormulary() {
+		FormularyWindow frame = new FormularyWindow();
+		frame.setVisible(true);
+	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource() == btnNewButton) {
-			
+			showFormulary();
 		}
 		else if(e.getSource() == buttonDetail) {
 

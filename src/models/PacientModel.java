@@ -9,6 +9,11 @@ public class PacientModel {
 	public String cambiar_ciudad; 
 	public String drogas; 
 	public String eua_legal;
+	public String edo_civil;
+	public String sexo;
+	public int leer;
+	public String ocupacion;
+	public String grado_estudio;
 	private String[] data = new String[7];
 
 

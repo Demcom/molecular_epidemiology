@@ -10,7 +10,7 @@ public class DataBaseConnection {
 	
 	private DataBaseConnection() {}
 	
-	private final String dbms = "mysql"; 
+	private final String dbms = "mysql"	; 
 	private final String jdbc = "jdbc";
 	private final String userName = "root";
 	private final String password = "root";
@@ -32,6 +32,34 @@ public class DataBaseConnection {
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		}
+	}
+	
+	public void saveDataToDb(PacientModel pacient) {
+		try {
+			//insert into paciente values (0, 'Jesse', 'Pinkman', 'Casado', 'Cocinero', 'M', 1, 'Preparatoria', 'Si', 'Si', 'No', 'Si', 0, 'Si'); 
+			Connection conn = getConnection();
+			String query = "insert into paciente values (0, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
+			PreparedStatement stmt = conn.prepareStatement(query);
+			stmt.setString(1, pacient.name);
+			stmt.setString(2, pacient.lastName);
+			stmt.setString(3, pacient.edo_civil);
+			stmt.setString(4, pacient.ocupacion);
+			stmt.setString(5, pacient.sexo);
+			stmt.setInt(6, pacient.leer);
+			stmt.setString(7, pacient.grado_estudio);
+			stmt.setString(8, pacient.eua_cruzado);
+			stmt.setString(9, pacient.cambiar_ciudad);
+			stmt.setString(10, pacient.deportado);
+			stmt.setString(11, pacient.drogas);
+			stmt.setInt(12, 0);
+			stmt.setString(13, pacient.eua_legal);
+			
+			stmt.executeUpdate(); 
+			System.out.println("Record is inserted into paciente table");
+		}catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+		
 	}
 	
 	public ArrayList<PacientModel> getPacients() {

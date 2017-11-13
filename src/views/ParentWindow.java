@@ -9,20 +9,23 @@ import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-public class ParentWindow extends JFrame {
+import interfaces.ParentWindowInterface;
+
+public class ParentWindow extends JFrame implements ParentWindowInterface {
 	
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 	public JPanel contentPane;
-
+	JMenuBar menuBar;
 	
 	public ParentWindow() {
+		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1024, 800);
 		
-		JMenuBar menuBar = new JMenuBar();
+		menuBar = new JMenuBar();
 		menuBar.setBackground(Color.LIGHT_GRAY);
 		setJMenuBar(menuBar);
 		
@@ -39,5 +42,15 @@ public class ParentWindow extends JFrame {
 
 	public JPanel getParentContentJPanel() {
 		return contentPane;
+	}
+
+	@Override
+	public void setDefaultCloseOperation(int operation) {
+		super.setDefaultCloseOperation(operation);
+	}
+
+	@Override
+	public void setTopBarMenuVisible(boolean visible) {
+		menuBar.setVisible(visible);
 	}
 }
