@@ -20,11 +20,11 @@ public class PacientModel {
 	public String[] getPacientDataArray() {
 		data[0] = name;
 		data[1] = lastName;
-		data[2] = eua_cruzado;
-		data[3] = deportado;
-		data[4] = cambiar_ciudad;
-		data[5] = drogas;
-		data[6] = eua_legal;
+//		data[2] = eua_cruzado;
+//		data[3] = deportado;
+//		data[4] = cambiar_ciudad;
+//		data[5] = eua_legal;
+//		data[6] = drogas;
 		return data;
 	}
 

@@ -27,7 +27,7 @@ public class FormularyWindow extends ParentWindow implements ActionListener{
 		setTitle("Paciente nuevo");
 		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		setTopBarMenuVisible(false);
-		setSize(400, 1000);
+		setBounds(1024, 0, 400, 1000);
 		
 		JLabel lblName = new JLabel("Nombre");
 		lblName.setBounds(15, 40, 69, 20);

@@ -23,13 +23,13 @@ public class ParentWindow extends JFrame implements ParentWindowInterface {
 	public ParentWindow() {
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 1024, 800);
+		setBounds(0, 0, 1024, 800);
 		
 		menuBar = new JMenuBar();
-		menuBar.setBackground(Color.LIGHT_GRAY);
+		menuBar.setBackground(Color.WHITE);
 		setJMenuBar(menuBar);
 		
-		JMenu mnArchivo = new JMenu("Archivo");
+		JMenu mnArchivo = new JMenu("	Archivo");
 		menuBar.add(mnArchivo);
 		
 		JMenuItem mntmNuevo = new JMenuItem("Nuevo");
