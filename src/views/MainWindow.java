@@ -1,47 +1,35 @@
 package views;
 
-import java.awt.AWTEvent;
-import java.awt.BorderLayout;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
-import javax.swing.border.EmptyBorder;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
-import javax.swing.plaf.metal.MetalBorders.TableHeaderBorder;
 import javax.swing.table.DefaultTableModel;
-
-import org.omg.CORBA.StringHolder;
 
 import db_connection.DataBaseConnection;
 import models.PacientModel;
 
-import javax.swing.JMenuBar;
-import javax.swing.JMenu;
-import javax.swing.JMenuItem;
 import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
 
 import java.awt.Panel;
-import java.awt.ScrollPane;
-import java.awt.Color;
+import java.awt.Point;
 import java.awt.Image;
-import java.awt.Label;
 
 import javax.imageio.ImageIO;
-import javax.naming.spi.ObjectFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseMotionListener;
 import java.awt.image.BufferedImage;
-import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 import javax.swing.JLabel;
 
-public class MainWindow extends ParentWindow implements ActionListener, ListSelectionListener {
+public class MainWindow extends ParentWindow implements ActionListener {
 
 
 	private static final long serialVersionUID = 1L;
@@ -57,6 +45,26 @@ public class MainWindow extends ParentWindow implements ActionListener, ListSele
 	private JLabel moved;
 	private JLabel crossed;
 	private ArrayList<PacientModel> pacientModels;
+	private int currentRowPos = -1;
+	private MouseMotionListener motionListener = new MouseMotionListener() {
+		
+		@Override
+		public void mouseMoved(MouseEvent e) {
+			// TODO Auto-generated method stub
+			Point point = e.getPoint();
+			if(currentRowPos != table.rowAtPoint(point)) {
+			currentRowPos = table.rowAtPoint(point);
+			table.getSelectionModel().setSelectionInterval(currentRowPos, currentRowPos);
+			cellSelectedChanged(currentRowPos);
+			}
+		}
+		
+		@Override
+		public void mouseDragged(MouseEvent e) {
+			// TODO Auto-generated method stub
+			
+		}
+	};
 
 	public MainWindow() {
 		setTitle("Pantalla principal");
@@ -67,9 +75,9 @@ public class MainWindow extends ParentWindow implements ActionListener, ListSele
 		tableModel.setColumnIdentifiers(columnNames);
 		tableModel.fireTableDataChanged();
 		tableModel.addTableModelListener(table);
-		table.getSelectionModel().addListSelectionListener(this);
 		table.getSelectionModel().setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-
+		table.addMouseMotionListener(motionListener);
+		
 		table.setBounds(0, 0, 400, 713);
 		JScrollPane scrollPane = new JScrollPane(table); 	
 		scrollPane.setBounds(0, 0, 400, 713);
@@ -102,27 +110,27 @@ public class MainWindow extends ParentWindow implements ActionListener, ListSele
 		
 		deported = new JLabel("X");
 		deported.setBounds(100, 107, 150, 150);
-		deported.setIcon(resizedImageIcon("../images/icon_deported.png", deported));
+		deported.setIcon(resizedImageIcon("/images/icon_deported.png", deported));
 		panel.add(deported);
 
 		legal = new JLabel("X");
 		legal.setBounds(370, 107, 150, 150);
-		legal.setIcon(resizedImageIcon("../images/icon_legal.png", legal));
+		legal.setIcon(resizedImageIcon("/images/icon_legal.png", legal));
 		panel.add(legal);
 		
 		drugs = new JLabel("X");
 		drugs.setBounds(100, 327, 150, 150);
-		drugs.setIcon(resizedImageIcon("../images/icon_drugs.png", drugs));
+		drugs.setIcon(resizedImageIcon("/images/icon_drugs.png", drugs));
 		panel.add(drugs);
 		
 		moved = new JLabel("X");
 		moved.setBounds(370, 327, 150, 150);
-		moved.setIcon(resizedImageIcon("../images/icon_move.png", moved));
+		moved.setIcon(resizedImageIcon("/images/icon_move.png", moved));
 		panel.add(moved);
 		
 		crossed = new JLabel("X");
 		crossed.setBounds(230, 527, 150, 150);
-		crossed.setIcon(resizedImageIcon("../images/icon_usa.png", crossed));
+		crossed.setIcon(resizedImageIcon("/images/icon_usa.png", crossed));
 		panel.add(crossed);
 
 
@@ -183,13 +191,10 @@ public class MainWindow extends ParentWindow implements ActionListener, ListSele
 
 	}
 
-	@Override
-	public void valueChanged(ListSelectionEvent e) {	
-		if(!e.getValueIsAdjusting()) {
+	public void cellSelectedChanged(int selected) {	
 			//System.out.println(String.valueOf(table.getSelectedRow()));
 			if(pacientModels != null) {
 				String res = "Si";
-				int selected = table.getSelectedRow();
 				
 				if(pacientModels.get(selected).deportado.equals(res)) 
 					deported.setVisible(true);
@@ -216,9 +221,8 @@ public class MainWindow extends ParentWindow implements ActionListener, ListSele
 				else 
 					crossed.setVisible(false);
 
-
-				
-			}
 		}
 	}
+	
+	
 }

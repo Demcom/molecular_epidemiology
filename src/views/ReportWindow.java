@@ -14,6 +14,7 @@ public class ReportWindow extends ParentWindow {
 	JLabel lblEua, lblCity, lblDeported, lblDrugs, lblLegal;
 
 	public ReportWindow() {
+		setTitle("Reporte");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(1024, 0, 500, 400);
 		setTopBarMenuVisible(false);
@@ -101,11 +102,11 @@ public class ReportWindow extends ParentWindow {
 		legal = (legal*100) / totalResponses;
 		drugs = (drugs*100) / totalResponses;
 		
-		lblEua.setText(String.valueOf(eua));
-		lblCity.setText(String.valueOf(city));
-		lblDeported.setText(String.valueOf(deported));
-		lblDrugs.setText(String.valueOf(drugs));
-		lblLegal.setText(String.valueOf(legal));
+		lblEua.setText(String.valueOf(eua)+"%");
+		lblCity.setText(String.valueOf(city)+"%");
+		lblDeported.setText(String.valueOf(deported)+"%");
+		lblDrugs.setText(String.valueOf(drugs)+"%");
+		lblLegal.setText(String.valueOf(legal)+"%");
 	}
 
 }

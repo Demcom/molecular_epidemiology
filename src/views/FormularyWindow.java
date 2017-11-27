@@ -128,7 +128,7 @@ public class FormularyWindow extends ParentWindow implements ActionListener{
 		ocupationComboBox.setBounds(179, 637, 200, 26);
 		getContentPane().add(ocupationComboBox);
 		
-		sexComboBox = new JComboBox(options);
+		sexComboBox = new JComboBox(new String[] {"","M", "H"});
 		sexComboBox.setBounds(179, 697, 200, 26);
 		getContentPane().add(sexComboBox);
 	}
