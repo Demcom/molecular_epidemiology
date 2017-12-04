@@ -12,10 +12,11 @@ public class DataBaseConnection {
 	
 	private final String dbms = "mysql"	; 
 	private final String jdbc = "jdbc";
-	private final String userName = "root";
-	private final String password = "root";
-	private final String serverName = "localhost";
+	private final String userName = "sql9208810";
+	private final String password = "ayatlrwkT3";
+	private final String serverName = "sql9.freemysqlhosting.net";
 	private final String portNumber = "3306";
+	private final String dbName = "sql9208810";
 		
 	private static DataBaseConnection dbConnection = new DataBaseConnection();
 	
@@ -104,7 +105,7 @@ public class DataBaseConnection {
 		}
 	}
 	private Connection getConnection() throws SQLException {
-	    String fullDbConnection = jdbc + ":" + dbms + "://" + serverName + ":" + portNumber + "/"+"development";
+	    String fullDbConnection = jdbc + ":" + dbms + "://" + serverName + ":" + portNumber + "/" + dbName;
 	    return DriverManager.getConnection(fullDbConnection, userName, password);
 	}
 

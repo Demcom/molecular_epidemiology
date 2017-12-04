@@ -16,13 +16,12 @@ import javax.swing.JButton;
 
 public class FormularyWindow extends ParentWindow implements ActionListener{
 	private JTextField textField_1;
-	private JTextField nameTextField;
-	private JTextField lastNameTextField;
+	private JTextField nameTextField, lastNameTextField, ocupationTextField;
 	private String [] options = new String[] {"","Si", "No"};
 	private String [] studyOptions = new String[] {"Primaria", "Secundaria", "Preparatoria", "Universidad"};
 	private JButton btnRegister;
 	private JComboBox euaComboBox, statusComboBox, deportedComboBox, studyComboBox, readComboBox;
-	private JComboBox cityComboBox, drugsComboBox, legalComboBox, ocupationComboBox, sexComboBox;
+	private JComboBox cityComboBox, drugsComboBox, legalComboBox, sexComboBox;
 	public FormularyWindow() {
 		setTitle("Paciente nuevo");
 		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
@@ -67,7 +66,7 @@ public class FormularyWindow extends ParentWindow implements ActionListener{
 		statusComboBox.setBounds(179, 217, 200, 26);
 		getContentPane().add(statusComboBox);
 		
-		deportedComboBox = new JComboBox(options);
+		deportedComboBox = new JComboBox(new String[] {"","Soltero","Viudo","Casado"});
 		deportedComboBox.setBounds(179, 277, 200, 26);
 		getContentPane().add(deportedComboBox);
 		
@@ -124,9 +123,9 @@ public class FormularyWindow extends ParentWindow implements ActionListener{
 		legalComboBox.setBounds(179, 577, 200, 26);
 		getContentPane().add(legalComboBox);
 		
-		ocupationComboBox = new JComboBox(options);
-		ocupationComboBox.setBounds(179, 637, 200, 26);
-		getContentPane().add(ocupationComboBox);
+		ocupationTextField = new JTextField("");
+		ocupationTextField.setBounds(179, 637, 200, 26);
+		getContentPane().add(ocupationTextField);
 		
 		sexComboBox = new JComboBox(new String[] {"","M", "H"});
 		sexComboBox.setBounds(179, 697, 200, 26);
@@ -152,7 +151,7 @@ public class FormularyWindow extends ParentWindow implements ActionListener{
 					pacient.leer = 1;
 				else 
 					pacient.leer = 0;
-				pacient.ocupacion = (String) ocupationComboBox.getSelectedItem();
+				pacient.ocupacion = ocupationTextField.getText();
 				pacient.grado_estudio = (String) studyComboBox.getSelectedItem();
 				DataBaseConnection.getInstance().saveDataToDb(pacient);
 			}
