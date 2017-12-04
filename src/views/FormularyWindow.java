@@ -1,15 +1,14 @@
 package views;
 
 import java.awt.Dimension;
-import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
+import javax.swing.ScrollPaneConstants;
 
 import db_connection.DataBaseConnection;
 import models.PacientModel;
@@ -30,7 +29,7 @@ public class FormularyWindow extends ParentWindow implements ActionListener{
 		setResizable(true);
 		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		setTopBarMenuVisible(false);
-		setBounds(1024, 0, 400, 800);
+		setBounds(1024, 0, 430, 800);
 		JPanel panel = new JPanel();
 		panel.setLayout(null);
 		panel.setPreferredSize(new Dimension(400,1100));
@@ -139,7 +138,8 @@ public class FormularyWindow extends ParentWindow implements ActionListener{
 		panel.add(sexComboBox);
 		
 		JScrollPane scrollPane = new JScrollPane(panel);
-		scrollPane.setSize(new Dimension(400,1000));
+		scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+		scrollPane.setSize(new Dimension(400,700));
 		this.add(scrollPane);
 	}
 
