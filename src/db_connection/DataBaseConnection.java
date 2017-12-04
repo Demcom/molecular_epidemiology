@@ -12,11 +12,11 @@ public class DataBaseConnection {
 	
 	private final String dbms = "mysql"	; 
 	private final String jdbc = "jdbc";
-	private final String userName = "sql9208810";
-	private final String password = "ayatlrwkT3";
-	private final String serverName = "sql9.freemysqlhosting.net";
+	private final String userName = "root";
+	private final String password = "root";
+	private final String serverName = "localhost";
 	private final String portNumber = "3306";
-	private final String dbName = "sql9208810";
+	private final String dbName = "testdb";
 		
 	private static DataBaseConnection dbConnection = new DataBaseConnection();
 	
